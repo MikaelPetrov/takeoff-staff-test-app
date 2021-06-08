@@ -1,0 +1,32 @@
+[
+  {
+    "key": "1",
+    "name": "John",
+    "age": "29",
+    "email": "john1911@mail.ru"
+  },
+  {
+    "key": "2",
+    "name": "Garry",
+    "age": "42",
+    "email": "garry99@inbox.ru"
+  },
+  {
+    "key": "3",
+    "name": "Mary",
+    "age": "20",
+    "email": "mary092@gmail.com"
+  },
+  {
+    "key": "4",
+    "name": "Eric",
+    "age": "18",
+    "email": "eric117@inbox.ru"
+  },
+  {
+    "key": "5",
+    "name": "Michael",
+    "age": "26",
+    "email": "michael331@gmail.com"
+  }
+]
