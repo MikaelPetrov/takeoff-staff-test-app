@@ -4,3 +4,8 @@ export type TypeUsers = {
   age: string;
   email: string;
 };
+
+export enum Method {
+  CREATE = "CREATE",
+  UPDATE = "UPDATE",
+}
