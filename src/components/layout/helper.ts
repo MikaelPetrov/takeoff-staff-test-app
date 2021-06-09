@@ -6,7 +6,7 @@ export function getSelectedKeys(location: string) {
       return "1";
     case paths[Page.USERS]:
       return "2";
-    case paths[Page.FILES]:
+    case paths[Page.SETTINGS]:
       return "3";
     default:
       return "0";

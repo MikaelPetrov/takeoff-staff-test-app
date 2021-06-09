@@ -1,7 +1,7 @@
 import React from "react";
-import Files from "../../components/pages/Files";
 import Login from "../../components/pages/Login";
-import Profile from "../../components/pages/Profile";
+import ProfileContainer from "../../components/pages/Profile/ProfileContainer";
+import SettingsContainer from "../../components/pages/Settings/SettingsContainer";
 import UsersContainer from "../../components/pages/Users/UsersContainer";
 import { Page, paths } from "./constants";
 import { TypeRoute } from "./types";
@@ -17,7 +17,7 @@ export function getRoutes(): TypeRoute[] {
     {
       type: Page.PROFILE,
       path: paths[Page.PROFILE],
-      component: <Profile />,
+      component: <ProfileContainer />,
     },
     {
       type: Page.USERS,
@@ -25,9 +25,9 @@ export function getRoutes(): TypeRoute[] {
       component: <UsersContainer />,
     },
     {
-      type: Page.FILES,
-      path: paths[Page.FILES],
-      component: <Files />,
+      type: Page.SETTINGS,
+      path: paths[Page.SETTINGS],
+      component: <SettingsContainer />,
     },
   ];
 }

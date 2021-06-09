@@ -2,7 +2,8 @@ import { Page, paths } from "../../core/routes/constants";
 
 export const PROFILE = "PROFILE";
 export const USERS = "USERS";
-export const FILES = "FILES";
+export const SETTINGS = "SETTINGS";
+export const EXIT = "EXIT";
 
 export const menuItems = [
   {
@@ -19,8 +20,14 @@ export const menuItems = [
   },
   {
     key: "3",
-    type: FILES,
-    name: "Files",
-    route: paths[Page.FILES],
+    type: SETTINGS,
+    name: "Settings",
+    route: paths[Page.SETTINGS],
+  },
+  {
+    key: "4",
+    type: EXIT,
+    name: "Exit",
+    route: paths[Page.LOGIN],
   },
 ];

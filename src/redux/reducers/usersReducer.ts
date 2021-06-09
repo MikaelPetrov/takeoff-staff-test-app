@@ -1,5 +1,6 @@
 import axios from "axios";
 import { TypeUsers } from "../../components/pages/Users/type";
+import { getJwtPairFromLocalStorage } from "../../utils/helper";
 import { InferActionsType, InferThunksType } from "../reduxStore";
 import {
   SET_FILTERED_USERS,
@@ -71,7 +72,14 @@ export const actions = {
 
 export const thunks = {
   getUsers: (): TypeThunk => async (dispatch) => {
-    const response = await axios.get("mocks/getUsers.json");
+    const curJwtPair = getJwtPairFromLocalStorage();
+    const queryConfig = {
+      headers: {
+        Authorization: `${curJwtPair.token_type} ${curJwtPair.access_token}`,
+      },
+    };
+
+    const response = await axios.get("mocks/getUsers.json", queryConfig);
     dispatch(actions.setUsers(response.data));
   },
 

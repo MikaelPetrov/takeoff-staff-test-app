@@ -1,4 +1,19 @@
+import { TypeJwtPair } from "../components/pages/Login/type";
 import { TypeUsers } from "../components/pages/Users/type";
+
+export function setJwtPairToLocalStorage(curJwtPair: TypeJwtPair): void {
+  localStorage.setItem("curJwtPair", JSON.stringify(curJwtPair));
+}
+
+export function removeJwtPairFromLocalStorage(): void {
+  localStorage.removeItem("curJwtPair");
+}
+
+export function getJwtPairFromLocalStorage(): TypeJwtPair {
+  return localStorage.getItem("curJwtPair")
+    ? JSON.parse(localStorage.getItem("curJwtPair")!)
+    : [];
+}
 
 export function toDeleteRow(array: TypeUsers[], key: string) {
   const users = array.filter((obj) => obj.key !== key);

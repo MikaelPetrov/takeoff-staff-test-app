@@ -1,4 +1,3 @@
-import { memo } from "react";
 import AppRoute from "./AppRoute";
 import { getRoutes } from "./routes";
 
@@ -19,4 +18,4 @@ const AppRoutes: React.FC = () => {
   );
 };
 
-export default memo(AppRoutes);
+export default AppRoutes;
