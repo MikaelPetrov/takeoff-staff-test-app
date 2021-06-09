@@ -2,19 +2,19 @@ import { Button, Input, Space, Table } from "antd";
 import { ChangeEvent, memo } from "react";
 import { useDispatch } from "react-redux";
 import { actions } from "../../../redux/reducers/usersReducer";
-import { toDeleteRow } from "../../../utils/helpers";
+import { toDeleteRow, toUser } from "../../../utils/helper";
 import { actionButtons, DELETE, EDIT } from "./constants";
-import { Method, TypeUsers } from "./types";
+import { Method, TypeUsers } from "./type";
 import UserDetail from "./UserDetail";
 import s from "./Users.module.scss";
 
 const { Search } = Input;
 
 type Props = {
+  user: TypeUsers | null;
   users: TypeUsers[];
   filteredUsers: TypeUsers[];
   searchValue: string;
-  userKey: string;
   method: string;
 };
 
@@ -22,9 +22,9 @@ const Users: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
 
   const columns = [
+    { title: "Email", dataIndex: "email", key: "email" },
     { title: "Name", dataIndex: "name", key: "name" },
     { title: "Age", dataIndex: "age", key: "age" },
-    { title: "Email", dataIndex: "email", key: "email" },
     {
       title: "Action",
       dataIndex: "",
@@ -65,7 +65,8 @@ const Users: React.FC<Props> = (props) => {
   }
 
   function editRow(key: string) {
-    dispatch(actions.setUserKey(key));
+    const user = toUser(props.users, key);
+    dispatch(actions.setUser(user!));
     dispatch(actions.setMethod(Method.UPDATE));
   }
 
@@ -86,7 +87,7 @@ const Users: React.FC<Props> = (props) => {
       {props.method ? (
         <UserDetail
           users={props.users}
-          userKey={props.userKey}
+          user={props.user}
           method={props.method}
         />
       ) : (

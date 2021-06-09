@@ -1,4 +1,4 @@
-import { TypeUsers } from "../components/pages/Users/types";
+import { TypeUsers } from "../components/pages/Users/type";
 
 export function toDeleteRow(array: TypeUsers[], key: string) {
   const users = array.filter((obj) => obj.key !== key);
@@ -18,12 +18,17 @@ export function toUserValue(
   };
 }
 
+export function toUser(array: TypeUsers[], key: string) {
+  const user = array.find((obj) => obj.key === key);
+  return user;
+}
+
 export function toFindIndex(array: TypeUsers[], key: string) {
   const elemIdx = array.findIndex((obj) => obj.key === key);
   return elemIdx;
 }
 
-export function toEditUser(
+export function toEditUsers(
   index: number,
   values: TypeUsers,
   array: TypeUsers[]

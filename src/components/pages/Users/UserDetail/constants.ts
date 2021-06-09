@@ -5,14 +5,14 @@ export const EMAIL = "EMAIL";
 export const formItems = [
   {
     key: "1",
-    type: NAME,
+    type: EMAIL,
   },
   {
     key: "2",
-    type: NUMBER,
+    type: NAME,
   },
   {
     key: "3",
-    type: EMAIL,
+    type: NUMBER,
   },
 ];

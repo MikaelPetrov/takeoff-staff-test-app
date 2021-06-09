@@ -7,6 +7,7 @@ import { useHistory, useLocation } from "react-router";
 import { Page, paths } from "../../core/routes/constants";
 import { actions } from "../../redux/reducers/usersReducer";
 import { FILES, menuItems, PROFILE, USERS } from "./constants";
+import { getSelectedKeys } from "./helper";
 
 const { Content, Footer, Sider } = Layout;
 
@@ -26,6 +27,7 @@ const AppLayout: React.FC<Props> = (props) => {
 
   function onChangePage(route: string) {
     dispatch(actions.setMethod(""));
+    dispatch(actions.setUser(null));
     history.push(route);
   }
 
@@ -39,19 +41,6 @@ const AppLayout: React.FC<Props> = (props) => {
         return <FileOutlined />;
       default:
         break;
-    }
-  }
-
-  function getSelectedKeys(location: string) {
-    switch (location) {
-      case paths[Page.PROFILE]:
-        return "1";
-      case paths[Page.USERS]:
-        return "2";
-      case paths[Page.FILES]:
-        return "3";
-      default:
-        return "0";
     }
   }
 
