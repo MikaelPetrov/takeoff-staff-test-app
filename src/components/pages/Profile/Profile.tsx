@@ -1,7 +1,5 @@
-import { memo } from "react";
-
 const Profile: React.FC = () => {
-  return <div>THE PROFILE PAGE IS HOSTED HERE!</div>;
+  return <>THE PROFILE PAGE IS HOSTED HERE!</>;
 };
 
-export default memo(Profile);
+export default Profile;

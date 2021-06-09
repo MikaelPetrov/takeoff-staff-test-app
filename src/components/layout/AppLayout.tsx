@@ -1,15 +1,23 @@
-import { FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  LogoutOutlined,
+  TeamOutlined,
+  ToolOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import "antd/dist/antd.css";
 import React, { memo, ReactNode, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router";
 import { Page, paths } from "../../core/routes/constants";
+import { useCheckAuth } from "../../hooks/useCheckAuth";
+import { useCheckPath } from "../../hooks/useCheckPath";
+import { thunks } from "../../redux/reducers/loginReducer";
 import { actions } from "../../redux/reducers/usersReducer";
-import { FILES, menuItems, PROFILE, USERS } from "./constants";
+import { EXIT, menuItems, PROFILE, SETTINGS, USERS } from "./constants";
 import { getSelectedKeys } from "./helper";
 
-const { Content, Footer, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 type Props = {
   children: ReactNode;
@@ -29,6 +37,9 @@ const AppLayout: React.FC<Props> = (props) => {
     dispatch(actions.setMethod(""));
     dispatch(actions.setUser(null));
     history.push(route);
+    if (route === paths[Page.LOGIN]) {
+      dispatch(thunks.logout());
+    }
   }
 
   function getIconMenu(type: string) {
@@ -37,12 +48,17 @@ const AppLayout: React.FC<Props> = (props) => {
         return <UserOutlined />;
       case USERS:
         return <TeamOutlined />;
-      case FILES:
-        return <FileOutlined />;
+      case SETTINGS:
+        return <ToolOutlined />;
+      case EXIT:
+        return <LogoutOutlined />;
       default:
         break;
     }
   }
+
+  useCheckPath();
+  useCheckAuth();
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -68,7 +84,6 @@ const AppLayout: React.FC<Props> = (props) => {
       )}
       <Layout className="site-layout">
         <Content style={{ margin: "0 16px" }}>{props.children}</Content>
-        <Footer style={{ textAlign: "center" }}></Footer>
       </Layout>
     </Layout>
   );

@@ -5,12 +5,12 @@ import { actions } from "../../../../redux/reducers/usersReducer";
 import {
   toEditUsers,
   toFindIndex,
-  toUserValue,
+  toUserValue
 } from "../../../../utils/helper";
 import { Method, TypeUsers } from "../type";
 import { EMAIL, formItems, NAME, NUMBER } from "./constants";
 import { getTitleMethod } from "./helper";
-import s from "./UserDetail.module.scss";
+import styles from "./UserDetail.module.scss";
 
 type Props = {
   user: TypeUsers | null;
@@ -35,18 +35,18 @@ const UserDetail: React.FC<Props> = (props) => {
         );
       case NAME:
         return (
-          <Form.Item name={["name"]} label="Name">
+          <Form.Item name={["name"]} label="Name" style={{ marginLeft: 8 }}>
             <Input />
           </Form.Item>
         );
       case NUMBER:
         return (
-          <Form.Item name={["age"]} label="Age">
+          <Form.Item name={["age"]} label="Age" style={{ marginLeft: 21 }}>
             <InputNumber min={0} max={99} />
           </Form.Item>
         );
       default:
-        return <></>;
+        return;
     }
   }
 
@@ -93,7 +93,7 @@ const UserDetail: React.FC<Props> = (props) => {
       validateMessages={validateMessages}
     >
       <h1>{getTitleMethod(props.user!, props.method)}</h1>
-      <div className={s["fields"]}>
+      <div className={styles["fields"]}>
         {formItems.map((item) => (
           <div key={item.key}>{getFormFields(item.type)}</div>
         ))}

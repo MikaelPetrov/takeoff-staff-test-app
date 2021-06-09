@@ -6,7 +6,7 @@ import { toDeleteRow, toUser } from "../../../utils/helper";
 import { actionButtons, DELETE, EDIT } from "./constants";
 import { Method, TypeUsers } from "./type";
 import UserDetail from "./UserDetail";
-import s from "./Users.module.scss";
+import styles from "./Users.module.scss";
 
 const { Search } = Input;
 
@@ -83,7 +83,7 @@ const Users: React.FC<Props> = (props) => {
   }
 
   return (
-    <div className={s["users"]}>
+    <div className={styles["users"]}>
       {props.method ? (
         <UserDetail
           users={props.users}
@@ -92,12 +92,12 @@ const Users: React.FC<Props> = (props) => {
         />
       ) : (
         <>
-          <div className={s["users__input"]}>
+          <div className={styles["users__input"]}>
             <Space direction="vertical">
               <Search
                 placeholder="Search user"
-                value={props.searchValue}
                 onChange={onSearchValue}
+                value={props.searchValue}
                 style={{ width: "300px" }}
                 enterButton
               />

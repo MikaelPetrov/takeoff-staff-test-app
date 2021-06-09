@@ -6,13 +6,16 @@ import {
   createStore,
 } from "redux";
 import thunk, { ThunkAction } from "redux-thunk";
+import loginReducer from "./reducers/loginReducer";
+import profileReducer from "./reducers/profileReducer";
+import settingsReducer from "./reducers/settingsReducer";
 import usersReducer from "./reducers/usersReducer";
 
 const rootReducer = combineReducers({
+  loginPage: loginReducer,
+  profilePage: profileReducer,
   usersPage: usersReducer,
-  // profilePage: profileReducer,
-  // filesPage: filesReducer,
-  // and etc...
+  settingsPage: settingsReducer,
 });
 
 const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
