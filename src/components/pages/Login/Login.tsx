@@ -21,7 +21,7 @@ const Login: React.FC = () => {
   return (
     <Form
       {...layout}
-      name="basic"
+      name="current"
       initialValues={{ remember: true }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}

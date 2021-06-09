@@ -2,16 +2,16 @@ import { memo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actions, thunks } from "../../../redux/reducers/usersReducer";
 import { TypeAppState } from "../../../redux/reduxStore";
-import { toFilterUsers } from "../../../utils/helpers";
+import { toFilterUsers } from "../../../utils/helper";
 import Users from "./Users";
 
 const UsersContainer: React.FC = () => {
   const dispatch = useDispatch();
   const usersState = useSelector((state: TypeAppState) => ({
+    user: state.usersPage.user,
     users: state.usersPage.users,
     filteredUsers: state.usersPage.filteredUsers,
     searchValue: state.usersPage.searchValue,
-    userKey: state.usersPage.userKey,
     method: state.usersPage.method,
   }));
 
@@ -29,10 +29,10 @@ const UsersContainer: React.FC = () => {
 
   return (
     <Users
+      user={usersState.user}
       users={usersState.users}
       filteredUsers={usersState.filteredUsers}
       searchValue={usersState.searchValue}
-      userKey={usersState.userKey}
       method={usersState.method}
     />
   );

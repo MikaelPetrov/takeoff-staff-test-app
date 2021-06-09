@@ -1,12 +1,12 @@
 import axios from "axios";
-import { TypeUsers } from "../../components/pages/Users/types";
+import { TypeUsers } from "../../components/pages/Users/type";
 import { InferActionsType, InferThunksType } from "../reduxStore";
 import {
   SET_FILTERED_USERS,
   SET_METHOD,
   SET_SEARCH_VALUE,
+  SET_USER,
   SET_USERS,
-  SET_USER_KEY,
 } from "./actions";
 
 type TypeInitialState = typeof initialState;
@@ -14,10 +14,10 @@ type TypeAction = InferActionsType<typeof actions>;
 type TypeThunk = InferThunksType<TypeAction>;
 
 const initialState = {
+  user: null as TypeUsers | null,
   users: [] as TypeUsers[],
   filteredUsers: [] as TypeUsers[],
   searchValue: "" as string,
-  userKey: "" as string,
   method: "" as string,
 };
 
@@ -26,14 +26,14 @@ const usersReducer = (
   action: TypeAction
 ): TypeInitialState => {
   switch (action.type) {
+    case SET_USER:
+      return { ...state, user: action.payload };
     case SET_USERS:
       return { ...state, users: action.payload };
     case SET_FILTERED_USERS:
       return { ...state, filteredUsers: action.payload };
     case SET_SEARCH_VALUE:
       return { ...state, searchValue: action.payload };
-    case SET_USER_KEY:
-      return { ...state, userKey: action.payload };
     case SET_METHOD:
       return { ...state, method: action.payload };
     default:
@@ -42,6 +42,11 @@ const usersReducer = (
 };
 
 export const actions = {
+  setUser: (user: TypeUsers | null) =>
+    ({
+      type: SET_USER,
+      payload: user,
+    } as const),
   setUsers: (users: TypeUsers[]) =>
     ({
       type: SET_USERS,
@@ -57,11 +62,6 @@ export const actions = {
       type: SET_SEARCH_VALUE,
       payload: searchValue,
     } as const),
-  setUserKey: (userKey: string) =>
-    ({
-      type: SET_USER_KEY,
-      payload: userKey,
-    } as const),
   setMethod: (method: string) =>
     ({
       type: SET_METHOD,
@@ -76,7 +76,6 @@ export const thunks = {
   },
 
   // if we have api data...
-
   // putUsers:
   //   (values: TypeUsers): TypeThunk =>
   //   async (dispatch) => {
@@ -84,6 +83,7 @@ export const thunks = {
   //     dispatch(thunks.getUsers());
   //   },
 
+  // if we have api data...
   // deleteUser:
   //   (key: string): TypeThunk =>
   //   async (dispatch) => {
